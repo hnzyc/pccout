@@ -1,0 +1,24 @@
+name: Crawler
+
+on:
+  schedule:
+  - cron: '30 2,8 * * *' # 每天上午10点半和下午4点半（UTC时间）执行一次
+
+jobs:
+  crawler:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20.0.0
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: --prod --confirm
+      
+      - name: Run crawler and send email
+        run: curl https://crawler.vercel.app/

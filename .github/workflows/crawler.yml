@@ -1,4 +1,4 @@
-name: pccout
+name: Crawler
 
 on:
   schedule:

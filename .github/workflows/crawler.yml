@@ -12,13 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: Deploy to Vercel
-        uses: amondnet/vercel-action@v20.0.0
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
-          vercel-args: --prod --confirm
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      
+      - name: Set up email password
+        run: echo "EMAIL_PASSWORD=${{ secrets.EMAIL_PASSWORD }}" >> $GITHUB_ENV
+        env:
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
       
       - name: Run crawler and send email
-        run: curl https://crawler.vercel.app/
+        run: python main.py

@@ -54,22 +54,22 @@ def execute_script(script, html):
                 this.html = html;
             };
             
-            // 定义document对象的querySelector方法，用于根据CSS选择器查找元素
+            # 定义document对象的querySelector方法，用于根据CSS选择器查找元素
             document.querySelector = function(selector) {
-                // 导入模块
+                # 导入模块
                 var cheerio = require("cheerio");
                 
-                // 加载html字符串，创建一个cheerio对象
+                # 加载html字符串，创建一个cheerio对象
                 var $ = cheerio.load(this.html);
                 
-                // 根据CSS选择器查找元素，并返回第一个匹配的元素
+                # 根据CSS选择器查找元素，并返回第一个匹配的元素
                 return $(selector)[0];
             };
             
-            // 执行传入的JavaScript代码
+            # 执行传入的JavaScript代码
             eval(script);
             
-            // 返回修改后的html字符串
+            # 返回修改后的html字符串
             return this.html;
         }
     """)
@@ -127,14 +127,14 @@ def send_email(results):
     message['Subject'] = Header(subject, 'utf-8')
     
     # 定义发件人邮箱账号和密码，从环境变量中获取
-    sender = 'zhaoyunchao@utrust.cn'
+    sender = 'crawler@utrust.cn'
     password = os.environ.get('EMAIL_PASSWORD')
     
     # 定义收件人邮箱账号，可以是多个
     receivers = ['zhaoyunchao@utrust.cn', 'liji@utrust.cn']
     
     # 创建SMTP对象，指定服务器地址和端口
-    smtp = smtplib.SMTP_SSL('smtp.utrust.cn', 25)
+    smtp = smtplib.SMTP_SSL('smtp.utrust.cn', 465)
     
     # 登录发件人邮箱账号和密码
     smtp.login(sender, password)

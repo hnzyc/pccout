@@ -127,14 +127,14 @@ def send_email(results):
     message['Subject'] = Header(subject, 'utf-8')
     
     # 定义发件人邮箱账号和密码，从环境变量中获取
-    sender = 'crawler@utrust.cn'
+    sender = 'zhaoyunchao@utrust.cn'
     password = os.environ.get('EMAIL_PASSWORD')
     
     # 定义收件人邮箱账号，可以是多个
     receivers = ['zhaoyunchao@utrust.cn', 'liji@utrust.cn']
     
     # 创建SMTP对象，指定服务器地址和端口
-    smtp = smtplib.SMTP_SSL('smtp.utrust.cn', 465)
+    smtp = smtplib.SMTP_SSL('smtp.utrust.cn', 25)
     
     # 登录发件人邮箱账号和密码
     smtp.login(sender, password)

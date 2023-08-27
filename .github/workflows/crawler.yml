@@ -1,8 +1,9 @@
 name: Crawler
 
 on:
-  schedule:
-  - cron: '30 2,8 * * *' # 每天上午10点半和下午4点半（UTC时间）执行一次
+ click
+  # schedule:
+  # - cron: '30 2,8 * * *' # 每天上午10点半和下午4点半（UTC时间）执行一次
 
 jobs:
   crawler:
